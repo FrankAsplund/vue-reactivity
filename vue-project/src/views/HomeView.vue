@@ -1,10 +1,8 @@
 <template>
   <main>
-
     <div class="container">
-
       <div class="border">
-        <h1> Your total is: {{ totalPrice }} SEK</h1>
+        <h1>Your total is: {{ totalPrice }} SEK</h1>
       </div>
 
       <!-- <button @click="numberOne++">Increase 1st number</button>
@@ -25,88 +23,93 @@
           <h1 class="card-h1">{{ item.id }}</h1>
           <div class="card-title">{{ item.title }}</div>
           <div class="card-text">{{ item.price }}</div>
-          <button @click="add">Add to cart</button>
+          <button class="card-button" @click="add(item)">Add to cart</button>
         </div>
       </div>
     </div>
-
-
-
-
   </main>
 </template>
 
 <script>
 export default {
   name: "Homeview",
-  totalPrice: 0,
-    data() {
-      return {
-        totalPrice: 0,
-        items: [
-          {
-            id: "1",
-            title: "Name",
-            price: "600",
-          },
-          {
-            id: "2",
-            title: "Name 2",
-            price: "1000",
-          },
-          {
-            id: "3",
-            title: "Name 3",
-            price: "10",
-          },
-          {
-            id: "4",
-            title: "Name 4",
-            price: "650",
-          },
-          {
-            id: "5",
-            title: "Name 5",
-            price: "1500",
-          },
-          {
-            id: "6",
-            title: "Name 6",
-            price: "50",
-          }
-        ]
-      }
-    },
-    
-    methods: {
-      add() {
-        this.items.price = totalPrice;
-        console.log(totalPrice);
+  data() {
+    return {
+      totalPrice: 0,
+      items: [
+        {
+          id: "1",
+          title: "Name",
+          price: 600,
+        },
+        {
+          id: "2",
+          title: "Name 2",
+          price: 1000,
+        },
+        {
+          id: "3",
+          title: "Name 3",
+          price: 10,
+        },
+        {
+          id: "4",
+          title: "Name 4",
+          price: 650,
+        },
+        {
+          id: "5",
+          title: "Name 5",
+          price: 1500,
+        },
+        {
+          id: "6",
+          title: "Name 6",
+          price: 50,
+        },
+      ],
+    };
+  },
 
-      /* this.items.price.push(this.item.totalArray); */
-      /* console.log(totalArray); */
-      }
+  methods: {
+    add(item) {
+      /* var totalPrice = 0; */
+      console.log(item.price);
+      this.totalPrice += item.price;
+      console.log("Total price is: ", this.totalPrice);
+      return this.totalPrice;
     },
+  },
 
-    computed: {
-      total() {
-        return console.log(totalArray);
-      }
-    }
-}
+  computed: {
+    total() {
+      return console.log(totalArray);
+    },
+  },
+};
 </script>
 
 <script setup>
-import { computed } from '@vue/reactivity';
-import { ref } from 'vue';
+import { computed } from "@vue/reactivity";
+import { ref } from "vue";
 
 const numberOne = ref(0);
 const numberTwo = ref(0);
+/* const totalPrice = ref(0); */
 
+/* computed: {},
+
+methods: {
+    add(item) {
+      console.log(item.price);
+      totalPrice = item.price;
+      console.log("Total price is: ", totalPrice);
+      return totalPrice;
+    },
+  }, */
 </script>
 
 <style scoped>
-
 main {
   display: flex;
   margin-top: 20px;
@@ -115,7 +118,7 @@ main {
 
 .grid {
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
 .for-class {
@@ -123,8 +126,7 @@ main {
 }
 
 .container {
-
-  margin: 5px;
+  margin: 5px 10px 0 0;
 
   padding: 15px;
   align-items: center;
@@ -135,7 +137,7 @@ main {
   background-color: rgba(112, 128, 144, 0.14);
   border-radius: 10px;
   width: 300px;
-  height: 300px;
+  height: 330px;
 }
 
 .border {
@@ -145,6 +147,7 @@ main {
   border-radius: 10px;
   border: solid 0.5px grey;
   width: 200px;
+  padding: 10px;
 }
 
 button {
@@ -160,7 +163,7 @@ button {
 
 button:hover {
   color: black;
-  background-color: rgba(158, 171, 184, 0.600);
+  background-color: rgba(158, 171, 184, 0.6);
   transition: 0.3s ease-in-out;
 }
 
@@ -171,9 +174,9 @@ button:hover {
   border-style: none;
   background-color: rgba(112, 128, 144, 0.14);
   border-radius: 10px;
-  padding: 15px;
-  height: 130px;
-  width: 200px;
+  padding: 5px 10px 5px 10px;
+  height: 170px;
+  width: 250px;
 }
 
 .card-title {
@@ -182,8 +185,18 @@ button:hover {
 }
 
 .card-container:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+  background-color: hsla(160, 100%, 37%, 0.2);
 }
 
+.card-h1 {
+  margin: 0px;
+}
 
+.card-text {
+  margin: 3px 0 3px 0;
+}
+
+.card-button {
+  margin: 5px;
+}
 </style>
