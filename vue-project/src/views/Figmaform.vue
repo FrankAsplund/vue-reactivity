@@ -2,16 +2,99 @@
   <main>
     <div class="frame-1">
       <div class="frame-4">
-        <h1 class="text">Skapa användarkonto</h1>
+        <div class="skapa-anv-ndarkonto">Skapa användarkonto</div>
 
-        <div class="subText">
+        <div
+          class="h-r-kan-du-skapa-ett-nytt-anv-ndarkonto-i-ad--v-nligen-fyll-i-uppgifterna-nedan-"
+        >
           Här kan du skapa ett nytt användarkonto i AD. Vänligen fyll i
           uppgifterna nedan.
         </div>
+
         <div class="frame-5">
           <div class="ny-anv-ndare">Ny användare</div>
+
+          <div class="f-rnamn--">
+            <span>
+              <span class="f-rnamn---span">Förnamn </span>
+            </span>
+          </div>
+
+          <input />
+
+          <div class="efternamn--">
+            <span>
+              <span class="efternamn---span">Efternamn </span>
+            </span>
+          </div>
+
+          <input />
+
+          <div class="prelimin-rt-anv-ndarnamn">Preliminärt användarnamn</div>
+
+          <div class="rectangle-3"></div>
+
+          <div class="prelimin-r-e-postadress">Preliminär e-postadress</div>
+
+          <div class="rectangle-4"></div>
+
+          <div class="titel">Titel</div>
+
+          <input />
+
+          <div class="telefonnummer--">
+            <span
+              ><span class="telefonnummer---span">Telefonnummer </span
+              ><span class="telefonnummer---span2">*</span></span
+            >
+          </div>
+
+          <input />
+
+          <div class="bolag--">
+            <span
+              ><span class="bolag---span">Bolag </span
+              ><span class="bolag---span2">*</span></span
+            >
+          </div>
+
+          <input />
+
+          <div class="avdelning--">
+            <span
+              ><span class="avdelning---span">Avdelning </span
+              ><span class="avdelning---span2">*</span></span
+            >
+          </div>
+
+          <input />
+
+          <div class="chef">Chef</div>
+
+          <input />
+
+          <div class="utg-ngsdatum">Utgångsdatum</div>
+
+          <input />
+
+          <div class="system">System</div>
+
+          <input />
+
+          <div class="mappar">Mappar</div>
+
+          <input />
+
+          <div class="rectangle-13"></div>
+
+          <div class="skicka">Skicka<br /></div>
+
+          <div class="rectangle-14"></div>
+
+          <div class="tillbaka">Tillbaka</div>
+
+          <div class="beh-righet">Behörighet</div>
         </div>
-        <div class="form-container"></div>
       </div>
 
       <div class="frame-2">
@@ -42,46 +125,38 @@ main {
   box-sizing: border-box;
 }
 .frame-1 {
-  display: flex;
-  justify-content: center;
   background: #ffffff;
-  width: 100%;
+  width: 1051px;
   height: 1553px;
   position: relative;
+  overflow: hidden;
 }
 .frame-4 {
   background: #354b58;
-  width: 100%;
+  width: 1051px;
   height: 1497px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  /* left: 0px; */
+  position: absolute;
+  left: 0px;
   top: 56px;
+  overflow: hidden;
 }
-.text {
+.skapa-anv-ndarkonto {
   color: #ffffff;
   text-align: left;
   font: 400 40px "Inter", sans-serif;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  /* left: 317px; */
-  /* top: 21px; */
+  position: absolute;
+  left: 317px;
+  top: 21px;
   width: 475px;
   height: 60px;
 }
-.subText {
+.h-r-kan-du-skapa-ett-nytt-anv-ndarkonto-i-ad--v-nligen-fyll-i-uppgifterna-nedan- {
   color: #ffffff;
   text-align: left;
   font: 400 20px "Inter", sans-serif;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  /* left: 156px; */
-  /* top: 91px; */
+  position: absolute;
+  left: 156px;
+  top: 91px;
   width: 797px;
   height: 55px;
 }
@@ -90,13 +165,11 @@ main {
   border-radius: 5px;
   width: 890px;
   height: 1266px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  /* left: 84px; */
-  /* top: 146px; */
+  position: absolute;
+  left: 84px;
+  top: 146px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .ny-anv-ndare {
   color: #000000;

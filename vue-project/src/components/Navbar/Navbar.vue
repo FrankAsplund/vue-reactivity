@@ -1,24 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-      <nav>
-        <div class="navbar">
-          <img
-      alt="logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="120"
-      height="120"
-    />
-    <h1>Vue Sean assignment</h1>
-    <div class="router">
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+  <nav>
+    <div class="navbar">
+      <img
+        alt="logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="120"
+        height="120"
+      />
+      <h1>Vue Sean assignment</h1>
+      <div class="router">
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </div>
     </div>
-        </div>
-      </nav>
+  </nav>
 </template>
 
 <style scoped>
@@ -31,17 +31,16 @@ h1 {
 .logo {
   margin-right: 1rem;
   padding: 20px;
-  
 }
 nav {
   align-items: center;
-  width: 100vw;
+  /* width: 100vw; */
   font-size: 15px;
 }
 .navbar {
   align-items: center;
   font-weight: bold;
-  width: 100%;
+  /* width: 100%; */
   background-color: hsla(160, 100%, 37%, 0.2);
   height: 100px;
   display: flex;
