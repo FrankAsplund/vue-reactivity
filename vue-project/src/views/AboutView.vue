@@ -129,9 +129,10 @@ main {
   position: relative;
 }
 .frame-4 {
-  background-color: hsla(160, 100%, 37%, 0.2);
+  background-color: hsla(160, 100%, 37%, 0.05);
   width: 100%;
   border: solid #000000;
+  
   border-width: 1px;
   height: auto;
   display: flex;
@@ -176,7 +177,7 @@ main {
   height: auto;
   position: relative;
   padding: 15px 25px 25px 25px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.7);
   margin: 0 0 3rem 0;
 }
 .header {

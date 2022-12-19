@@ -67,9 +67,42 @@ export default {
 };
 </script>
 
+<script setup>
+
+import { ref } from "vue";
+let input = ref("");
+
+function filteredList() {
+  return post.filter((post) =>
+  post.toLowerCase().includes(input.value.toLowerCase())
+  );
+}
+
+</script>
+
 <template>
   <!-- <button class="user-button" @click="getPosts">Load Posts</button> -->
   <main>
+
+    <!-- <input type="text" v-model="input" placeholder="Search for users..." @keyup="filteredList"/>
+  <div class="grid">
+      <div v-for="post in filteredList()" :key="post.id" class="for-class">
+      <div class="user-container">
+        <h1 class="user-h1">{{ post.id }}</h1>
+        <h3 class="user-h3">{{ post.firstname }} {{ post.lastname }}</h3>
+        <div class="user-text" style="color:blue;">Titel: {{ post.title }}</div>
+        <div class="user-text" style="color:green;">Telefonnummer: {{ post.phonenr }}</div>
+        <div class="user-text" style="color:darkorange;">Bolag: {{ post.company }}</div>
+        <div class="user-text" style="color:violet;">Avdelning: {{ post.department }}</div>
+        <button class="user-button" @click="deleteData(post.id)">
+          Delete post
+        </button>
+      </div>
+      </div>
+    </div>
+  <div class="item error" v-if="input&&!filteredList().length">
+     <p>No results found!</p>
+  </div> -->
 
     <div class="grid">
       <div v-for="post in posts" :key="post.id" class="for-class">
@@ -157,6 +190,18 @@ button {
 button:hover {
   background-color: hsla(359, 100%, 40%, 0.47);
   transition: 0.3s ease-in-out;
+}
+
+input {
+  background: #ffffff;
+  border: solid #000000;
+  border-radius: 6px;
+  border-width: 1px;
+  width: 30%;
+  padding: 2px 10px;
+  height: 40px;
+  margin: 10px 15px 0 0px;
+  position: relative;
 }
 
 </style>
