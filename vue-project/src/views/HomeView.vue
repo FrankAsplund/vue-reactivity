@@ -4,24 +4,20 @@
       <div class="border">
         <h1>Your total is: {{ totalPrice }} SEK</h1>
       </div>
-
       <!-- <button @click="numberOne++">Increase 1st number</button>
       <h1>{{ numberOne }}</h1>
-
-      
       <button @click="numberTwo++">Increase 2nd number</button>
       <h1>{{ numberTwo }}</h1>
-      
       <div class="border">
         <h1>{{ numberOne }} + {{ numberTwo }} = {{ numberOne + numberTwo }}</h1>
       </div> -->
     </div>
 
     <div class="grid">
-      <div v-for="item in items" :key="item.id" class="for-class">
+      <div v-for="item in items" :key="item.itemId" class="for-class">
         <div class="card-container">
-          <h1 class="card-h1">{{ item.id }}</h1>
-          <div class="card-title">{{ item.title }}</div>
+          <h1 class="card-h1">{{ item.itemId }}</h1>
+          <div class="card-title">{{ item.itemTitle }}</div>
           <div class="card-text">{{ item.price }}</div>
           <button class="card-button" @click="add(item)">Add to cart</button>
         </div>
@@ -38,33 +34,33 @@ export default {
       totalPrice: 0,
       items: [
         {
-          id: "1",
-          title: "Name",
+          itemId: "1",
+          itemTitle: "Name",
           price: 600,
         },
         {
-          id: "2",
-          title: "Name 2",
+          itemId: "2",
+          itemTitle: "Name 2",
           price: 1000,
         },
         {
-          id: "3",
-          title: "Name 3",
+          itemId: "3",
+          itemTitle: "Name 3",
           price: 10,
         },
         {
-          id: "4",
-          title: "Name 4",
+          itemId: "4",
+          itemTitle: "Name 4",
           price: 650,
         },
         {
-          id: "5",
-          title: "Name 5",
+          itemId: "5",
+          itemTitle: "Name 5",
           price: 1500,
         },
         {
-          id: "6",
-          title: "Name 6",
+          itemId: "6",
+          itemTitle: "Name 6",
           price: 50,
         },
       ],
@@ -95,18 +91,6 @@ import { ref } from "vue";
 
 const numberOne = ref(0);
 const numberTwo = ref(0);
-/* const totalPrice = ref(0); */
-
-/* computed: {},
-
-methods: {
-    add(item) {
-      console.log(item.price);
-      totalPrice = item.price;
-      console.log("Total price is: ", totalPrice);
-      return totalPrice;
-    },
-  }, */
 </script>
 
 <style scoped>

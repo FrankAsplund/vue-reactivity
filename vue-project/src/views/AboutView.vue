@@ -1,6 +1,36 @@
+<script>
+import axios from "axios";
+
+export default {
+  name: "AboutView",
+  data() {
+    return {
+      formData: {
+        firstname: "",
+        lastname: "",
+        title: "",
+        phonenr: "",
+        company: "",
+        department: ""
+      },
+    };
+  },
+  methods: {
+    createUser() {
+      if(!confirm('Are you sure?')) {
+        e.preventDefault();
+    }
+      axios
+        .post("http://localhost:3000/posts", this.formData)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+    },
+  },
+};
+</script>
+
 <template>
   <main>
-    <div class="frame-1">
       <div class="frame-4">
         <h1 class="text">Skapa användarkonto</h1>
 
@@ -9,25 +39,73 @@
           uppgifterna nedan.
         </div>
         <div class="frame-5">
-          <div class="ny-anv-ndare">Ny användare</div>
+          <form @submit.prevent="createUser">
+          <div class="header">Ny användare</div>
+
+          <div class="grid">
+
+            <div class="form-class">
+              <label for="firstname" class="label-short">Förnamn
+                <span class="required-label"> *</span>
+              </label>
+              <input name="firstname" class="input-short" type="text" v-model="formData.firstname" required>
+            </div>
+
+              <div class="form-class">
+                <label for="lastname" class="label-short">Efternamn
+                <span class="required-label"> *</span>
+              </label>
+              <input name="lastname" class="input-short" type="text" v-model="formData.lastname" required>
+              </div>
+
+              <br>
+          </div>
+
+          <div class="grid">
+          <div class="form-class">
+            <label for="title">Titel
+              <span class="required-label"> *</span>
+            </label>
+            <br>
+            <input name="title" type="text" v-model="formData.title" required>
+          </div>
+
+
+          <div class="form-class">
+            <label for="phonenr">Telefonnummer
+              <span class="required-label"> *</span>
+            </label>
+            <br>
+            <input name="phonenr" type="text" v-model="formData.phonenr" required>
+          </div>
+
+
+          <div class="form-class">
+            <label for="company">Bolag
+              <span class="required-label"> *</span>
+            </label>
+            <br>
+            <input name="company" type="text" v-model="formData.company" required>
+          </div>
+
+
+          <div class="form-class">
+            <label for="department">Avdelning
+              <span class="required-label"> *</span>
+            </label>
+            <br>
+            <input name="department" type="text" v-model="formData.department" required>
+          </div>
+                      
         </div>
-        <div class="form-container"></div>
-      </div>
 
-      <div class="frame-2">
-        <div class="fyll-i-formul-r">Fyll I formulär</div>
+          <button class="skicka"> Skicka </button>
 
-        <div class="frame-3">
-          <div class="line-3"></div>
 
-          <div class="line-2"></div>
-
-          <div class="line-1"></div>
+          </form>
         </div>
-
-        <div class="image-1"></div>
       </div>
-    </div>
+    
   </main>
 </template>
 
@@ -41,6 +119,7 @@ main {
 .frame-1 * {
   box-sizing: border-box;
 }
+
 .frame-1 {
   display: flex;
   justify-content: center;
@@ -50,28 +129,25 @@ main {
   position: relative;
 }
 .frame-4 {
-  background: #354b58;
+  background-color: hsla(160, 100%, 37%, 0.2);
   width: 100%;
-  height: 1497px;
+  border: solid #000000;
+  border-width: 1px;
+  height: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   position: relative;
-  /* left: 0px; */
-  top: 56px;
 }
 .text {
   color: #ffffff;
   text-align: left;
-  font: 400 40px "Inter", sans-serif;
+  font: 600 40px "Inter", sans-serif;
   position: relative;
   display: flex;
   justify-content: center;
-  /* left: 317px; */
-  /* top: 21px; */
   width: 475px;
-  height: 60px;
 }
 .subText {
   color: #ffffff;
@@ -80,435 +156,83 @@ main {
   position: relative;
   display: flex;
   justify-content: center;
-  /* left: 156px; */
-  /* top: 91px; */
   width: 797px;
-  height: 55px;
+  margin: 0 0 15px 0;
 }
+
+.grid {
+  margin: 20px 0 20px 0;
+  padding: 10px;
+  display: grid;
+  border: solid #00000063;
+  border-radius: 6px;
+  border-width: 0.3px;
+}
+
 .frame-5 {
-  background: #ffffff;
+  background: #fff;
   border-radius: 5px;
-  width: 890px;
-  height: 1266px;
+  min-width: 600px;
+  height: auto;
   position: relative;
-  display: flex;
-  justify-content: center;
-  /* left: 84px; */
-  /* top: 146px; */
+  padding: 15px 25px 25px 25px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  /* overflow: hidden; */
+  margin: 0 0 3rem 0;
 }
-.ny-anv-ndare {
+.header {
   color: #000000;
   text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 13px;
-  top: 11px;
+  font: 600 20px "Inter", sans-serif;
+  position: relative;
   width: 168px;
-  height: 47px;
 }
-.f-rnamn-- {
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 14px;
-  top: 67px;
-  width: 111px;
-  height: 36px;
-}
-.f-rnamn---span {
+
+label {
   color: #000000;
-  font: 300 16px "Inter", sans-serif;
+  font: 20px "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding: 10px;
 }
-/* input {
-  color: linear-gradient(to left, #ff0000, #ff0000),
-    linear-gradient(to left, #000000, #000000);
-  font: 300 16px "Inter", sans-serif;
-} */
+
+.required-label {
+    color: #CD2036;
+}
 
 input {
   background: #ffffff;
   border: solid #000000;
+  border-radius: 6px;
   border-width: 1px;
-  width: 863px;
-  height: 43px;
-  /* Fix so the positioning is the same, but relative and not absolute */
-  position: absolute;
-  left: 13px;
-  top: 91px;
+  width: 70%;
+  padding: 2px 10px;
+  height: 40px;
+  margin: 10px 15px 0 0px;
+  position: relative;
 }
 
-.rectangle-1 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 13px;
-  top: 91px;
+.input-short {
+  width: 30%;
 }
-.efternamn-- {
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 14px;
-  top: 157px;
-  width: 111px;
-  height: 36px;
+
+.form-class {
+  margin: 10px 0 15px 0;
 }
-.efternamn---span {
-  color: #000000;
-  font: 300 16px "Inter", sans-serif;
-}
-.efternamn---span2 {
-  color: linear-gradient(to left, #ff0000, #ff0000),
-    linear-gradient(to left, #000000, #000000);
-  font: 300 16px "Inter", sans-serif;
-}
-.rectangle-2 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 13px;
-  top: 181px;
-}
-.prelimin-rt-anv-ndarnamn {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 15px;
-  top: 247px;
-  width: 251px;
-  height: 36px;
-}
-.rectangle-3 {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    linear-gradient(to left, #ffffff, #ffffff);
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 14px;
-  top: 271px;
-}
-.prelimin-r-e-postadress {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 16px;
-  top: 337px;
-  width: 275px;
-  height: 36px;
-}
-.rectangle-4 {
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    linear-gradient(to left, #ffffff, #ffffff);
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 15px;
-  top: 361px;
-}
-.titel {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 17px;
-  top: 427px;
-  width: 111px;
-  height: 36px;
-}
-.rectangle-5 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 16px;
-  top: 451px;
-}
-.telefonnummer-- {
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 14px;
-  top: 517px;
-  width: 153px;
-  height: 36px;
-}
-.telefonnummer---span {
-  color: #000000;
-  font: 300 16px "Inter", sans-serif;
-}
-.telefonnummer---span2 {
-  color: linear-gradient(to left, #ff0000, #ff0000),
-    linear-gradient(to left, #000000, #000000);
-  font: 300 16px "Inter", sans-serif;
-}
-.rectangle-6 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 13px;
-  top: 541px;
-}
-.bolag-- {
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 14px;
-  top: 607px;
-  width: 111px;
-  height: 36px;
-}
-.bolag---span {
-  color: #000000;
-  font: 300 16px "Inter", sans-serif;
-}
-.bolag---span2 {
-  color: linear-gradient(to left, #ff0000, #ff0000),
-    linear-gradient(to left, #000000, #000000);
-  font: 300 16px "Inter", sans-serif;
-}
-.rectangle-7 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 13px;
-  top: 631px;
-}
-.avdelning-- {
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 14px;
-  top: 697px;
-  width: 111px;
-  height: 36px;
-}
-.avdelning---span {
-  color: #000000;
-  font: 300 16px "Inter", sans-serif;
-}
-.avdelning---span2 {
-  color: linear-gradient(to left, #ff0000, #ff0000),
-    linear-gradient(to left, #000000, #000000);
-  font: 300 16px "Inter", sans-serif;
-}
-.rectangle-8 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 13px;
-  top: 721px;
-}
-.chef {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 15px;
-  top: 787px;
-  width: 111px;
-  height: 36px;
-}
-.rectangle-9 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 14px;
-  top: 811px;
-}
-.utg-ngsdatum {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 16px;
-  top: 877px;
-  width: 111px;
-  height: 36px;
-}
-.rectangle-10 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 15px;
-  top: 901px;
-}
-.system {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 16px;
-  top: 1004px;
-  width: 111px;
-  height: 36px;
-}
-.rectangle-11 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 15px;
-  top: 1028px;
-}
-.mappar {
-  color: #000000;
-  text-align: left;
-  font: 300 16px "Inter", sans-serif;
-  position: absolute;
-  left: 13px;
-  top: 1094px;
-  width: 111px;
-  height: 36px;
-}
-.rectangle-12 {
-  background: #ffffff;
-  border: solid #000000;
-  border-width: 1px;
-  width: 863px;
-  height: 43px;
-  position: absolute;
-  left: 12px;
-  top: 1118px;
-}
-.rectangle-13 {
-  background: #4a90e2;
-  border-radius: 6px;
-  width: 89px;
-  height: 36px;
-  position: absolute;
-  left: 16px;
-  top: 1193px;
-}
+
 .skicka {
-  color: #ffffff;
-  text-align: left;
-  font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 35px;
-  top: 1201px;
-  width: 79px;
-  height: 27px;
-}
-.rectangle-14 {
-  background: #0275d8;
+  background-color: #fff;
   border-radius: 6px;
-  width: 89px;
-  height: 36px;
-  position: absolute;
-  left: 124px;
-  top: 1193px;
-}
-.tillbaka {
-  color: #ffffff;
-  text-align: left;
+  color: black;
   font: 400 16px "Inter", sans-serif;
-  position: absolute;
-  left: 137px;
-  top: 1202px;
-  width: 79px;
-  height: 27px;
+  width: 120px;
+  height: 50px;
 }
-.beh-righet {
-  color: #000000;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 12px;
-  top: 964px;
-  width: 168px;
-  height: 47px;
+
+.skicka:hover {
+  transition: 0.5s ease-in-out;
+  background-color: hsla(161, 68%, 15%, 0.628);
+  color: #fff;
 }
-.frame-2 {
-  width: 1051px;
-  height: 52px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: hidden;
-}
-.fyll-i-formul-r {
-  color: #000000;
-  text-align: left;
-  font: 400 20px "Inter", sans-serif;
-  position: absolute;
-  left: 62px;
-  top: 18px;
-  width: 157px;
-  height: 34px;
-}
-.frame-3 {
-  width: 45px;
-  height: 42px;
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  overflow: hidden;
-}
-.line-3 {
-  border: solid #000000;
-  border-width: 2px 0 0 0;
-  width: 16px;
-  height: 0px;
-  position: absolute;
-  left: 9px;
-  top: 23px;
-}
-.line-2 {
-  border: solid #000000;
-  border-width: 2px 0 0 0;
-  width: 16px;
-  height: 0px;
-  position: absolute;
-  left: 9px;
-  top: 17px;
-}
-.line-1 {
-  border: solid #000000;
-  border-width: 2px 0 0 0;
-  width: 16px;
-  height: 0px;
-  position: absolute;
-  left: 9px;
-  top: 11px;
-}
-.image-1 {
-  width: 92px;
-  height: 43px;
-  position: absolute;
-  left: 946px;
-  top: 10px;
-}
+
 </style>

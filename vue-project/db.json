@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "firstname": "Förnamn 1",
+      "lastname": "Efternamn 1",
+      "title": "CEO",
+      "phonenr": "123 456 789",
+      "company": "Onify",
+      "department": "IT"
+    },
+    {
+      "id": 2,
+      "firstname": "Förnamn 2",
+      "lastname": "Efternamn 2",
+      "title": "Founder",
+      "phonenr": "123 456 789",
+      "company": "Onify",
+      "department": "IT"
+    },
+    {
+      "id": 3,
+      "firstname": "Förnamn 1",
+      "lastname": "Efternamn 1",
+      "title": "Front end developer",
+      "phonenr": "123 456 789",
+      "company": "Onify",
+      "department": "IT"
+    },
+    {
+      "firstname": "Frank",
+      "lastname": "Asplund",
+      "title": "Praktikant",
+      "phonenr": "0729067387",
+      "company": "Onify",
+      "department": "Front end",
+      "id": 4
+    },
+    {
+      "firstname": "Robert",
+      "lastname": "Lundsten",
+      "title": "CTO",
+      "phonenr": "00000000000000",
+      "company": "Test",
+      "department": "Test",
+      "id": 5
+    }
+  ]
+}
