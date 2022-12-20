@@ -29,6 +29,22 @@ export default {
 };
 </script>
 
+<script setup>
+import { ref } from "vue";
+
+const userName = ref("");
+
+createUsername(() => {
+
+
+
+
+})
+
+</script>
+
+
+
 <template>
   <main>
       <div class="frame-4">
@@ -57,9 +73,25 @@ export default {
               </label>
               <input name="lastname" class="input-short" type="text" v-model="formData.lastname" required>
               </div>
+            </div>
+
+            <div class="grid2">
+
+              <button @click="createUsername">Skapa användarnamn</button>
+
+              <div class="form-class">
+                <label for="firstname" class="label-short">Preliminärt användarnamn</label>
+                <div name="firstname" class="preliminary">{{ username }}</div>
+              </div>
+              
+              <div class="form-class">
+                <label for="lastname" class="label-short">Preliminär e-postadress</label>
+                <div name="lastname" class="preliminary"></div>
+              </div>
+            </div>
+
 
               <br>
-          </div>
 
           <div class="grid">
           <div class="form-class">
@@ -98,10 +130,7 @@ export default {
           </div>
                       
         </div>
-
           <button class="skicka"> Skicka </button>
-
-
           </form>
         </div>
       </div>
@@ -170,6 +199,16 @@ main {
   border-width: 0.3px;
 }
 
+.grid2 {
+  /* margin: 20px 0 20px 0; */
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  border: solid #00000063;
+  border-radius: 6px;
+  border-width: 0.3px;
+}
+
 .frame-5 {
   background: #fff;
   border-radius: 5px;
@@ -215,6 +254,19 @@ input {
 
 .input-short {
   width: 30%;
+}
+
+.preliminary {
+  background: #ffffff;
+  border: solid #000000;
+  border-radius: 6px;
+  border-width: 1px;
+  padding: 2px 10px;
+  height: 40px;
+  margin: 10px 15px 0 0px;
+  position: relative;
+  left: 10px;
+  width: 150px;
 }
 
 .form-class {

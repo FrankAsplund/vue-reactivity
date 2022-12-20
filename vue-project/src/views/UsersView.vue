@@ -8,12 +8,13 @@ export default {
 
   data() {
     return {
-      posts: []
+      posts: [],
+      search: "",
     };
   },
 
   methods: {
-    getPosts() {
+    /* getPosts() {
       axios
         .get("http://localhost:3000/posts")
         .then((response) => {
@@ -23,27 +24,51 @@ export default {
         .catch((error) => {
           console.log(error.message);
         });
-    },
+    }, */
 
     /* Deletes an entry in the database */
     deleteData(id) {
-      if(!confirm('Are you sure you want to delete this user from the database? This choice is permanent and cannot be regretted.')) {
-    }
-      axios
+      if(confirm('Are you sure you want to delete this user from the database? This choice is permanent and cannot be regretted.') == true) {
+        axios
         .delete(`http://localhost:3000/posts/${id}`)
         .then(
-          axios
-        .get("http://localhost:3000/posts")
-        .then((response) => {
-          console.log(response.data);
-          this.posts = response.data;
-        })
-        )
-        .catch(function (error) {
-          console.log(error.response);
-        });
+          this.getAllPosts()
+          )
+          .catch(function (error) {
+            console.log(error.response);
+          });
+        } else {
+          return;
+        }
     },
-   /*  {
+
+    getAllPosts() {
+      axios
+        .get("http://localhost:3000/posts")
+        .then(response => {
+          if (this.search) {
+            this.posts = response.data.filter(posts =>
+              posts.firstname.toLowerCase().includes(this.search.toLowerCase()) ||
+              posts.lastname.toLowerCase().includes(this.search.toLowerCase()) ||
+              posts.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              posts.phonenr.toLowerCase().includes(this.search.toLowerCase()) ||
+              posts.company.toLowerCase().includes(this.search.toLowerCase()) ||
+              posts.department.toLowerCase().includes(this.search.toLowerCase())
+            );
+          } else {
+            console.log(response.data);
+          this.posts = response.data;
+          }
+        });
+      },
+    },
+
+  mounted() {
+    console.log("Mounted");
+    this.getAllPosts();
+  }
+
+  /*  {
   "id": 6,
   "firstname": "Delete",
   "lastname": "Delete",
@@ -52,79 +77,52 @@ export default {
   "company": "Delete",
   "department": "Delete"
 } */
-  },
-
-  mounted() {
-    console.log("mounted");
-    axios
-        .get("http://localhost:3000/posts")
-        .then((response) => {
-          console.log(response.data);
-          this.posts = response.data;
-        })
-      .catch((err) => console.log(err.message));
-  },
 };
 </script>
 
-<script setup>
-
-import { ref } from "vue";
-let input = ref("");
-
-function filteredList() {
-  return post.filter((post) =>
-  post.toLowerCase().includes(input.value.toLowerCase())
-  );
-}
-
-</script>
-
 <template>
-  <!-- <button class="user-button" @click="getPosts">Load Posts</button> -->
+  <div class="searchbar">
+    <input type="text" v-model.trim="search" placeholder="Search for users..." @keyup="getAllPosts"/>
+  </div>
   <main>
-
-    <!-- <input type="text" v-model="input" placeholder="Search for users..." @keyup="filteredList"/>
-  <div class="grid">
-      <div v-for="post in filteredList()" :key="post.id" class="for-class">
-      <div class="user-container">
-        <h1 class="user-h1">{{ post.id }}</h1>
-        <h3 class="user-h3">{{ post.firstname }} {{ post.lastname }}</h3>
-        <div class="user-text" style="color:blue;">Titel: {{ post.title }}</div>
-        <div class="user-text" style="color:green;">Telefonnummer: {{ post.phonenr }}</div>
-        <div class="user-text" style="color:darkorange;">Bolag: {{ post.company }}</div>
-        <div class="user-text" style="color:violet;">Avdelning: {{ post.department }}</div>
-        <button class="user-button" @click="deleteData(post.id)">
-          Delete post
-        </button>
-      </div>
-      </div>
-    </div>
-  <div class="item error" v-if="input&&!filteredList().length">
-     <p>No results found!</p>
-  </div> -->
-
     <div class="grid">
+
       <div v-for="post in posts" :key="post.id" class="for-class">
       <div class="user-container">
         <h1 class="user-h1">{{ post.id }}</h1>
         <h3 class="user-h3">{{ post.firstname }} {{ post.lastname }}</h3>
-        <div class="user-text" style="color:blue;">Titel: {{ post.title }}</div>
-        <div class="user-text" style="color:green;">Telefonnummer: {{ post.phonenr }}</div>
-        <div class="user-text" style="color:darkorange;">Bolag: {{ post.company }}</div>
-        <div class="user-text" style="color:violet;">Avdelning: {{ post.department }}</div>
+        <div class="user-text">Titel: {{ post.title }}</div>
+        <div class="user-text">Telefonnummer: {{ post.phonenr }}</div>
+        <div class="user-text">Bolag: {{ post.company }}</div>
+        <div class="user-text">Avdelning: {{ post.department }}</div>
         <button class="user-button" @click="deleteData(post.id)">
           Delete post
         </button>
       </div>
       </div>
     </div>
+
+    <!-- <div class="grid">
+      <div v-for="post in posts" :key="post.id" class="for-class">
+      <div class="user-container">
+        <h1 class="user-h1">{{ post.id }}</h1>
+        <h3 class="user-h3">{{ post.firstname }} {{ post.lastname }}</h3>
+        <div class="user-text">Titel: {{ post.title }}</div>
+        <div class="user-text">Telefonnummer: {{ post.phonenr }}</div>
+        <div class="user-text">Bolag: {{ post.company }}</div>
+        <div class="user-text">Avdelning: {{ post.department }}</div>
+        <button class="user-button" @click="deleteData(post.id)">
+          Delete post
+        </button>
+      </div>
+      </div>
+    </div> -->
   </main>
 </template>
 
 <style scoped>
 main {
-  display: flex;
+  /* display: flex; */
   padding: 10px;
 }
 
@@ -152,7 +150,8 @@ main {
 }
 
 .user-container:hover {
-  background-color: hsla(160, 86%, 17%, 0.5);
+  background-color: hsla(160, 86%, 17%, 0.75);
+  /* box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 0.4); */
   transition: 0.2s ease-out;
   transform: scale(1.1);
   z-index: 2;
@@ -164,12 +163,14 @@ main {
 
 .user-h3 {
   margin: 5px;
+  color: white;
 }
 
 .user-text {
   font-size: 15px;
   margin-right: 10px;
   margin: 3px 0 3px 0;
+  color: white;
 }
 
 .user-button {
@@ -202,6 +203,12 @@ input {
   height: 40px;
   margin: 10px 15px 0 0px;
   position: relative;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 </style>
