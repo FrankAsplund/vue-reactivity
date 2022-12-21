@@ -13,8 +13,10 @@ export default {
         company: "",
         department: ""
       },
+      records: []
     };
   },
+
   methods: {
     createUser() {
       if(!confirm('Are you sure?')) {
@@ -24,26 +26,60 @@ export default {
         .post("http://localhost:3000/posts", this.formData)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
+        document.forms[0].reset();
     },
+
+    getAllRecords() {
+      axios
+        /* .get("https://oni-demo1-app.onify.io/api/v2/my/options/tags/company?pagesize=50&sort=name&sortby=asc", */
+        .get("http://localhost:3000/records",
+        /* {
+			headers: {
+				'accept': 'application/json',
+				'authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao'
+			}
+		} */
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.records = response.data;
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }, 
+
+    getAllRecordsOnify() {
+      axios
+        .get("https://oni-demo1-app.onify.io/api/v2/my/options/tags/company?pagesize=50&sort=name&sortby=asc",
+        {
+			headers: {
+				'accept': 'application/json',
+				'authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao'
+			}
+		}
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.records = response.data;
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    },       
   },
+
+  
+
+
+  mounted() {
+  console.log("Mounted");
+  this.getAllRecords();
+  this.getAllRecordsOnify();
+  }
+
 };
 </script>
-
-<script setup>
-import { ref } from "vue";
-
-const userName = ref("");
-
-createUsername(() => {
-
-
-
-
-})
-
-</script>
-
-
 
 <template>
   <main>
@@ -77,11 +113,11 @@ createUsername(() => {
 
             <div class="grid2">
 
-              <button @click="createUsername">Skapa användarnamn</button>
+              <!-- <button @click="createUsername">Skapa användarnamn</button> -->
 
               <div class="form-class">
                 <label for="firstname" class="label-short">Preliminärt användarnamn</label>
-                <div name="firstname" class="preliminary">{{ username }}</div>
+                <div name="firstname" class="preliminary"></div>
               </div>
               
               <div class="form-class">
@@ -117,7 +153,14 @@ createUsername(() => {
               <span class="required-label"> *</span>
             </label>
             <br>
-            <input name="company" type="text" v-model="formData.company" required>
+            <select id="select" class="select" v-model="formData.company" required>
+            <option 
+            v-for="records in records"  
+            :value="records.value"
+            :key="records.key" 
+            > {{ records.name }}
+            </option>
+          </select>
           </div>
 
 
@@ -256,11 +299,40 @@ input {
   width: 30%;
 }
 
-.preliminary {
+.select {
   background: #ffffff;
   border: solid #000000;
   border-radius: 6px;
   border-width: 1px;
+  width: 40%;
+  padding: 2px 10px;
+  height: 40px;
+  margin: 10px 15px 0 0px;
+  position: relative;
+}
+
+.option {
+  background: #ffffff;
+  border: solid #000000;
+  border-radius: 6px;
+  border-width: 1px;
+  width: 100%;
+  padding: 2px 10px;
+  height: 40px;
+  margin: 10px 15px 0 0px;
+  position: relative;
+}
+
+.preliminary {
+  /* background: #94949441; */
+  background: linear-gradient(
+    90deg,
+    rgba(238, 238, 238, 0.8) 0%,
+    rgba(255, 255, 255, 0.58) 100%
+  );
+  border: solid #000000;
+  border-radius: 8px;
+  border-width: 1.5px;
   padding: 2px 10px;
   height: 40px;
   margin: 10px 15px 0 0px;

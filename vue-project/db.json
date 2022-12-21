@@ -125,6 +125,180 @@
       "company": "Onify",
       "department": "Front end",
       "id": 15
+    },
+    {
+      "firstname": "Frank",
+      "lastname": "Asplund",
+      "title": "Praktikant",
+      "phonenr": "0729067387",
+      "company": "Min kommun Energi AB",
+      "department": "Front end",
+      "id": 17
+    }
+  ],
+  "records": [
+    {
+      "name": "Barn- och utbildningsförvaltning",
+      "value": "Barn- och utbildningsförvaltning",
+      "tag": [
+        "access-management",
+        "company"
+      ],
+      "key": "barn-och-utbildningsforvaltning",
+      "createdate": "2021-08-17T19:34:06.399Z",
+      "createdby": "admin",
+      "modifieddate": "2021-08-24T11:00:09.785Z",
+      "modifiedby": "admin"
+    },
+    {
+      "name": "Bygg- och miljöförvaltning",
+      "value": "Bygg- och miljöförvaltning",
+      "tag": [
+        "access-management",
+        "company"
+      ],
+      "key": "bygg-och-miljoforvaltning",
+      "createdate": "2021-08-17T19:34:06.399Z",
+      "createdby": "admin",
+      "modifieddate": "2021-08-24T11:00:09.785Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "lexit",
+      "name": "Lexit",
+      "value": "Lexit",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T13:15:26.055Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T13:15:26.055Z",
+      "modifiedby": "admin"
+    },
+    {
+      "name": "Min kommun Energi AB",
+      "value": "Min kommun Energi AB",
+      "tag": [
+        "access-management",
+        "company"
+      ],
+      "key": "min-kommun-energi-ab",
+      "createdate": "2021-08-17T19:34:06.399Z",
+      "createdby": "admin",
+      "modifieddate": "2021-08-24T11:00:09.785Z",
+      "modifiedby": "admin"
+    },
+    {
+      "name": "Min kommun Fastigheter AB",
+      "value": "Min kommun Fastigheter AB",
+      "tag": [
+        "access-management",
+        "company"
+      ],
+      "key": "min-kommun-fastigheter-ab",
+      "createdate": "2021-08-17T19:34:06.398Z",
+      "createdby": "admin",
+      "modifieddate": "2021-08-24T11:00:09.785Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "other",
+      "name": "Other",
+      "value": "Other",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T12:35:31.459Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T12:35:31.459Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "rg19",
+      "name": "Rg19",
+      "value": "Rg19",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T13:13:06.004Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T13:13:06.004Z",
+      "modifiedby": "admin"
+    },
+    {
+      "name": "Socialförvaltning",
+      "value": "Socialförvaltning",
+      "tag": [
+        "access-management",
+        "company"
+      ],
+      "key": "socialforvaltning",
+      "createdate": "2021-08-17T19:34:06.399Z",
+      "createdby": "admin",
+      "modifieddate": "2021-08-24T11:00:09.785Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "strongpoint",
+      "name": "StrongPoint",
+      "value": "StrongPoint",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T13:13:49.758Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T13:13:49.758Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "tietoevry",
+      "name": "TietoEVRY",
+      "value": "TietoEVRY",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T12:35:14.734Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T12:35:14.734Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "vince",
+      "name": "Vince",
+      "value": "Vince",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T13:15:43.347Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T13:15:43.347Z",
+      "modifiedby": "admin"
+    },
+    {
+      "key": "zitac",
+      "name": "Zitac Consulting",
+      "value": "Zitac Consulting",
+      "tag": [
+        "consulting",
+        "nor",
+        "company"
+      ],
+      "createdate": "2022-01-03T11:42:31.309Z",
+      "createdby": "admin",
+      "modifieddate": "2022-01-03T13:12:42.157Z",
+      "modifiedby": "admin"
     }
   ]
 }
