@@ -11,34 +11,27 @@ export default {
         title: "",
         phonenr: "",
         company: "",
-        department: ""
+        department: "",
       },
-      records: []
+      records: [],
     };
   },
 
   methods: {
     createUser() {
-      if(!confirm('Are you sure?')) {
+      if (!confirm("Are you sure?")) {
         e.preventDefault();
-    }
+      }
       axios
         .post("http://localhost:3000/posts", this.formData)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-        document.forms[0].reset();
+      document.forms[0].reset();
     },
 
-    getAllRecords() {
+    /* getAllRecords() {
       axios
-        /* .get("https://oni-demo1-app.onify.io/api/v2/my/options/tags/company?pagesize=50&sort=name&sortby=asc", */
-        .get("http://localhost:3000/records",
-        /* {
-			headers: {
-				'accept': 'application/json',
-				'authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao'
-			}
-		} */
+          .get("http://localhost:3000/records",
         )
         .then((response) => {
           console.log(response.data);
@@ -47,137 +40,170 @@ export default {
         .catch((error) => {
           console.log(error.message);
         });
-    }, 
+    }, */
 
     getAllRecordsOnify() {
       axios
-        .get("https://oni-demo1-app.onify.io/api/v2/my/options/tags/company?pagesize=50&sort=name&sortby=asc",
-        {
-			headers: {
-				'accept': 'application/json',
-				'authorization' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao'
-			}
-		}
+        .get(
+          "https://oni-demo1-app.onify.net/api/v2/my/options/tags/company?pagesize=50&sort=name&sortby=asc",
+          {
+            headers: {
+              accept: "application/json",
+              authorization:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao",
+            },
+          }
         )
         .then((response) => {
-          console.log(response.data);
-          this.records = response.data;
+          console.log(response.data.records);
+          this.records = response.data.records;
         })
         .catch((error) => {
           console.log(error.message);
         });
-    },       
+    },
   },
 
-  
-
-
   mounted() {
-  console.log("Mounted");
-  this.getAllRecords();
-  this.getAllRecordsOnify();
-  }
-
+    console.log("Mounted");
+    /* this.getAllRecords(); */
+    this.getAllRecordsOnify();
+  },
 };
 </script>
 
 <template>
   <main>
-      <div class="frame-4">
-        <h1 class="text">Skapa användarkonto</h1>
+    <div class="frame-4">
+      <h1 class="text">Skapa användarkonto</h1>
 
-        <div class="subText">
-          Här kan du skapa ett nytt användarkonto i AD. Vänligen fyll i
-          uppgifterna nedan.
-        </div>
-        <div class="frame-5">
-          <form @submit.prevent="createUser">
+      <div class="subText">
+        Här kan du skapa ett nytt användarkonto i AD. Vänligen fyll i
+        uppgifterna nedan.
+      </div>
+      <div class="frame-5">
+        <form @submit.prevent="createUser">
           <div class="header">Ny användare</div>
 
           <div class="grid">
+            <div class="form-class">
+              <label for="firstname" class="label-short"
+                >Förnamn
+                <span class="required-label"> *</span>
+              </label>
+              <input
+                name="firstname"
+                class="input-short"
+                type="text"
+                v-model="formData.firstname"
+                required
+              />
+            </div>
 
             <div class="form-class">
-              <label for="firstname" class="label-short">Förnamn
+              <label for="lastname" class="label-short"
+                >Efternamn
                 <span class="required-label"> *</span>
               </label>
-              <input name="firstname" class="input-short" type="text" v-model="formData.firstname" required>
+              <input
+                name="lastname"
+                class="input-short"
+                type="text"
+                v-model="formData.lastname"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <!-- <button @click="createUsername">Skapa användarnamn</button> -->
+
+            <div class="form-class">
+              <label for="firstname" class="label-short"
+                >Preliminärt användarnamn</label
+              >
+              <div name="firstname" class="preliminary"></div>
             </div>
 
-              <div class="form-class">
-                <label for="lastname" class="label-short">Efternamn
-                <span class="required-label"> *</span>
-              </label>
-              <input name="lastname" class="input-short" type="text" v-model="formData.lastname" required>
-              </div>
+            <div class="form-class">
+              <label for="lastname" class="label-short"
+                >Preliminär e-postadress</label
+              >
+              <div name="lastname" class="preliminary"></div>
             </div>
+          </div>
 
-            <div class="grid2">
-
-              <!-- <button @click="createUsername">Skapa användarnamn</button> -->
-
-              <div class="form-class">
-                <label for="firstname" class="label-short">Preliminärt användarnamn</label>
-                <div name="firstname" class="preliminary"></div>
-              </div>
-              
-              <div class="form-class">
-                <label for="lastname" class="label-short">Preliminär e-postadress</label>
-                <div name="lastname" class="preliminary"></div>
-              </div>
-            </div>
-
-
-              <br>
+          <br />
 
           <div class="grid">
-          <div class="form-class">
-            <label for="title">Titel
-              <span class="required-label"> *</span>
-            </label>
-            <br>
-            <input name="title" type="text" v-model="formData.title" required>
+            <div class="form-class">
+              <label for="title"
+                >Titel
+                <span class="required-label"> *</span>
+              </label>
+              <br />
+              <input
+                name="title"
+                type="text"
+                v-model="formData.title"
+                required
+              />
+            </div>
+
+            <div class="form-class">
+              <label for="phonenr"
+                >Telefonnummer
+                <span class="required-label"> *</span>
+              </label>
+              <br />
+              <input
+                name="phonenr"
+                type="text"
+                v-model="formData.phonenr"
+                required
+              />
+            </div>
+
+            <div class="form-class">
+              <label for="company"
+                >Bolag
+                <span class="required-label"> *</span>
+              </label>
+              <br />
+              <select
+                id="select"
+                class="select"
+                v-model="formData.company"
+                required
+              >
+                <option
+                  v-for="records in records"
+                  :value="records.value"
+                  :key="records.key"
+                >
+                  {{ records.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-class">
+              <label for="department"
+                >Avdelning
+                <span class="required-label"> *</span>
+              </label>
+              <br />
+              <input
+                name="department"
+                type="text"
+                v-model="formData.department"
+                required
+              />
+            </div>
           </div>
-
-
-          <div class="form-class">
-            <label for="phonenr">Telefonnummer
-              <span class="required-label"> *</span>
-            </label>
-            <br>
-            <input name="phonenr" type="text" v-model="formData.phonenr" required>
-          </div>
-
-
-          <div class="form-class">
-            <label for="company">Bolag
-              <span class="required-label"> *</span>
-            </label>
-            <br>
-            <select id="select" class="select" v-model="formData.company" required>
-            <option 
-            v-for="records in records"  
-            :value="records.value"
-            :key="records.key" 
-            > {{ records.name }}
-            </option>
-          </select>
-          </div>
-
-
-          <div class="form-class">
-            <label for="department">Avdelning
-              <span class="required-label"> *</span>
-            </label>
-            <br>
-            <input name="department" type="text" v-model="formData.department" required>
-          </div>
-                      
-        </div>
-          <button class="skicka"> Skicka </button>
-          </form>
-        </div>
+          <button class="skicka">Skicka</button>
+        </form>
       </div>
-    
+    </div>
   </main>
 </template>
 
@@ -204,7 +230,7 @@ main {
   background-color: hsla(160, 100%, 37%, 0.05);
   width: 100%;
   border: solid #000000;
-  
+
   border-width: 1px;
   height: auto;
   display: flex;
@@ -280,7 +306,7 @@ label {
 }
 
 .required-label {
-    color: #CD2036;
+  color: #cd2036;
 }
 
 input {
@@ -359,5 +385,4 @@ input {
   background-color: hsla(161, 68%, 15%, 0.628);
   color: #fff;
 }
-
 </style>
