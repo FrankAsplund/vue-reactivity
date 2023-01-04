@@ -67,7 +67,7 @@ export default {
     getAllSystemsOnify() {
       axios
         .get(
-          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system&filter=tag:access&term=bilbo&pagesize=50&sort=name.lower,asc",
+          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system",
           {
             headers: {
               accept: "application/json",
