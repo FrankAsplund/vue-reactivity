@@ -12,6 +12,7 @@ export default {
         phonenr: "",
         company: "",
         department: "",
+        system: "",
       },
       records: [],
     };
@@ -63,12 +64,10 @@ export default {
         });
     },
 
-    /* https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=type:user&term=anna&pagesize=50&sort=name.lower,asc */
-
-    getAllItemsOnify() {
+    getAllSystemsOnify() {
       axios
         .get(
-          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=type:user&term=anna&pagesize=50&sort=name.lower,asc",
+          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system&filter=tag:access&term=bilbo&pagesize=50&sort=name.lower,asc",
           {
             headers: {
               accept: "application/json",
@@ -87,11 +86,37 @@ export default {
     },
   },
 
+  /* https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=type:user&term=anna&pagesize=50&sort=name.lower,asc */
+  /* https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system&filter=tag:access&term=bilbo&pagesize=50&sort=name.lower,asc */
+
+  /* getAllItemsOnify() {
+      axios
+        .get(
+          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=type:user&term=anna&pagesize=50&sort=name.lower,asc",
+          {
+            headers: {
+              accept: "application/json",
+              authorization:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.access);
+          this.access = response.data.access;
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    },
+  }, */
+
   mounted() {
     console.log("Mounted");
     /* this.getAllRecords(); */
     this.getAllRecordsOnify();
-    this.getAllItemsOnify();
+    /* this.getAllItemsOnify(); */
+    this.getAllSystemsOnify();
   },
 };
 </script>
@@ -221,6 +246,22 @@ export default {
                 type="text"
                 v-model="formData.department"
                 required
+              />
+            </div>
+
+            <div class="header">Behörighet</div>
+
+            <div class="form-class">
+              <label for="system"
+                >System
+                <span class="required-label"> *</span>
+              </label>
+              <br />
+              <input
+                name="system"
+                type="text"
+                required
+                v-model="formData.system"
               />
             </div>
           </div>
