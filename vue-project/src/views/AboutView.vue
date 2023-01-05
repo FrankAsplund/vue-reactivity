@@ -15,6 +15,7 @@ export default {
         system: "",
       },
       records: [],
+      systems: [],
     };
   },
 
@@ -78,7 +79,7 @@ export default {
         )
         .then((response) => {
           console.log(response.data.records);
-          this.records = response.data.records;
+          this.systems = response.data.records;
         })
         .catch((error) => {
           console.log(error.message);
@@ -226,11 +227,11 @@ export default {
                 required
               >
                 <option
-                  v-for="records in records"
-                  :value="records.value"
-                  :key="records.key"
+                  v-for="record in records"
+                  :value="record.value"
+                  :key="record.key"
                 >
-                  {{ records.name }}
+                  {{ record.name }}
                 </option>
               </select>
             </div>
@@ -263,6 +264,14 @@ export default {
                 required
                 v-model="formData.system"
               />
+              <div
+                v-for="system in systems"
+                :value="system.value"
+                :key="system.key"
+                class="recordClass"
+              >
+                {{ system.name }}
+              </div>
             </div>
           </div>
           <button class="skicka">Skicka</button>
@@ -449,5 +458,17 @@ input {
   transition: 0.5s ease-in-out;
   background-color: hsla(161, 68%, 15%, 0.628);
   color: #fff;
+}
+
+.recordClass {
+  background: #000000;
+  border: solid #000000;
+  border-radius: 6px;
+  border-width: 1px;
+  width: 100%;
+  padding: 2px 10px;
+  height: 15px;
+  margin: 0px 0px 0px 0px;
+  position: relative;
 }
 </style>
