@@ -16,6 +16,7 @@ export default {
       },
       records: [],
       systems: [],
+      search: "",
     };
   },
 
@@ -65,7 +66,7 @@ export default {
         });
     },
 
-    getAllSystemsOnify() {
+    /* getAllSystemsOnify() {
       axios
         .get(
           "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system",
@@ -80,6 +81,33 @@ export default {
         .then((response) => {
           console.log(response.data.records);
           this.systems = response.data.records;
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }, */
+
+    getAllSystemsOnify() {
+      axios
+        .get(
+          "https://oni-demo1-app.onify.net/api/v2/my/items/access-management?filter=tag:system",
+          {
+            headers: {
+              accept: "application/json",
+              authorization:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJsaWEiLCJleHBpcmVkYXRlIjoiMjAyMy0wNC0zMFQwODo0NToyMC4wMDBaIiwiY2xpZW50Q29kZSI6Im9uaSIsImlhdCI6MTY3MTQzODE5MH0.0v8gGzhn5XQRswdeKF2AfGuCRh6EGj_HFQz2bupN5ao",
+            },
+          }
+        )
+        .then((response) => {
+          if (this.search) {
+            this.systems = response.data.records.filter((systems) =>
+              systems.name.toLowerCase().includes(this.search.toLowerCase())
+            );
+          } else {
+            console.log(response.data.records);
+            this.systems = "";
+          }
         })
         .catch((error) => {
           console.log(error.message);
@@ -263,15 +291,18 @@ export default {
                 type="text"
                 required
                 v-model="formData.system"
+                placeholder="The user has authority in these systems..."
+                v-model.trim="search"
+                @keyup="getAllSystemsOnify"
               />
-              <div
+              <option
                 v-for="system in systems"
                 :value="system.value"
                 :key="system.key"
                 class="recordClass"
               >
                 {{ system.name }}
-              </div>
+              </option>
             </div>
           </div>
           <button class="skicka">Skicka</button>
@@ -461,13 +492,14 @@ input {
 }
 
 .recordClass {
-  background: #000000;
+  background: white;
+  color: black;
   border: solid #000000;
   border-radius: 6px;
   border-width: 1px;
-  width: 100%;
+  width: 50%;
   padding: 2px 10px;
-  height: 15px;
+  height: 25px;
   margin: 0px 0px 0px 0px;
   position: relative;
 }
