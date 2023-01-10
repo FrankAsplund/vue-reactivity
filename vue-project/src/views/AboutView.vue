@@ -103,7 +103,8 @@ export default {
           if (this.search) {
             this.systems = response.data.records.filter((systems) =>
               systems.name.toLowerCase().includes(this.search.toLowerCase())
-            );
+              );
+              console.log(this.systems);
           } else {
             console.log(response.data.records);
             this.systems = "";
@@ -288,6 +289,7 @@ export default {
               <br />
               <input
                 name="system"
+                id="system"
                 type="text"
                 required
                 v-model="formData.system"
@@ -295,14 +297,14 @@ export default {
                 v-model.trim="search"
                 @keyup="getAllSystemsOnify"
               />
-              <option
+              <button
                 v-for="system in systems"
                 :value="system.value"
                 :key="system.key"
                 class="recordClass"
               >
                 {{ system.name }}
-              </option>
+            </button>
             </div>
           </div>
           <button class="skicka">Skicka</button>
@@ -503,4 +505,6 @@ input {
   margin: 0px 0px 0px 0px;
   position: relative;
 }
+
+
 </style>
